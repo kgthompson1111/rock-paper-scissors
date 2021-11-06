@@ -1,0 +1,78 @@
+@font-face {
+    font-family: calibriBold;
+    src: url(files/calibri-bold.TTF);
+}
+
+* {
+    font-family: CalibriBold;
+}
+
+.container {
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+}
+
+.header-box {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 150px;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+h5 {
+    margin-top: 0;
+}
+
+.score-box {
+    display: flex;
+    width: 300px;
+}
+
+.scoreText {
+    flex: 1;
+    font-size: 25px;
+}
+
+.content-box {
+    background-color: lightblue;
+    flex: 1;
+    width: 90%;
+    margin: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.button-box {
+    min-width: 60%;
+    height: 250px;
+    padding: 10px;
+    background-color: lightblue;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+button {
+height: 200px;
+width: 200px;
+border-radius: 15px;
+border: solid 5px black;
+margin: 10px
+}
+
+button:hover {
+    background-color: lightblue;
+}
