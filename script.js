@@ -1,60 +1,4 @@
- // declare two variables - the computer's guess, and the human's guess
  /*
- let computerGuess, humanGuess;
- let computerScore = 0;
- let humanScore = 0;
-
- function computerPlay() {
-     let randomizedGuess = Math.floor(Math.random() * 3) + 1;
-     if (randomizedGuess === 1) {
-         computerGuess = "rock";
-     } else if (randomizedGuess === 2) {
-         computerGuess = "paper";
-     } else if (randomizedGuess === 3) {
-         computerGuess = "scissors";
-     }
-     return computerGuess;
- }
-
- function humanPlay() {
-     let guessed = false;
-     let humanGuessInput;
-     while (guessed === false) {
-         humanGuessInput = prompt("Choose your weapon!", "");
-         humanGuessInput = humanGuessInput.toLowerCase();
-         if (humanGuessInput === "rock" || humanGuessInput === "paper" || humanGuessInput === "scissors") {
-             humanGuess = humanGuessInput;
-             return humanGuess;
-             guessed = true;
-         } 
-     }   
- }
-
- function roundPlay(humanGuess, computerGuess) {
-     if (humanGuess === computerGuess) {
-         console.log("It's a tie! Play again");
-     } else if (humanGuess === "rock" && computerGuess === "paper") {
-         console.log("You lose!");
-         computerScore += 1;
-     } else if (humanGuess === "rock" && computerGuess === "scissors") {
-         console.log("You win!");
-         humanScore += 1;
-     } else if (humanGuess === "paper" && computerGuess === "rock") {
-         console.log("You win!");
-         humanScore += 1;
-     } else if (humanGuess === "paper" && computerGuess === "scissors") {
-         console.log("You lose!");
-         computerScore += 1;
-     } else if (humanGuess === "scissors" && computerGuess === "rock") {
-         console.log("You lose!");
-         computerScore += 1;
-     } else if (humanGuess === "scissors" && computerGuess === "paper") {
-         console.log("You win!");
-         humanScore += 1;
-     }
- }
-
-
  function game() {
  humanPlay();
  computerPlay();
@@ -64,35 +8,123 @@
  if (humanScore === 5 || computerScore === 5) {
      winner = true;
      return winner;
- }
- }
-
- while (winner === false) {
- game();
- }
-
+ } */
+ 
+/*
  if (humanScore === 5) {
      console.log("With 5 points, you are the ultimate winner - congratulations!");
  } else if (computerScore === 5) {
      console.log("The computer scored 5 points - you are the ultimate loser!");
- }
+ } */
 
- */
+ //initialize the human score and set to 0, append to human score holder div
+let humanScoreHolder = document.querySelector('#humanScoreHolder');
+let humanScore = 0;
+humanScoreHolder.textContent = humanScore;
 
-let playerScore = 0;
-let playerScoreHolder = document.querySelector('#playerScoreHolder');
-playerScoreHolder.textContent = playerScore;
-
-let computerScore = 0
+//initialize the computer score and set to 0, append to computer score holder div
 let computerScoreHolder = document.querySelector('#computerScoreHolder');
+let computerScore = 0
 computerScoreHolder.textContent = computerScore;
 
+//initialize the round text holder for round feedback
+let roundTextHolder = document.querySelector('#roundTextHolder');
+let roundText = "";
+
+//set winner to false for while loop
 let winner = false;
 
- const choiceButtons = document.querySelectorAll('.choiceButton');
+//create humanGuess and computerGuess variables for round
+let computerGuess;
+let humanGuess;
+
+//define choice buttons into javascript
+const choiceButtons = document.querySelectorAll('.choiceButton');
+
+//computer guessing function - chooses rock, paper or scissors
+function computerPlay() {
+    let randomizedGuess = Math.floor(Math.random() * 3) + 1;
+    switch (randomizedGuess) {
+        case 1:
+            computerGuess = "rock";
+            break;
+        case 2:
+            computerGuess = "paper";
+            break;
+        case 3:
+            computerGuess = "scissors";
+            break;   
+        }
+    return computerGuess;
+    }
+
+// play a round - takes humanGuess and computerGuess as an arguement and compares value
+    function roundPlay(humanGuess, computerGuess) {
+        if (humanGuess === computerGuess) {
+        // Tie scenario
+            roundTextHolder.setAttribute('style', 'color: blue');
+            roundText = `You both chose ${humanGuess} - it's a tie! Choose again.`
+            roundTextHolder.textContent = roundText;
+        //Computer win scenarios
+        } else if (humanGuess === "rock" && computerGuess === "paper") {
+            roundText = `Computer wins - ${computerGuess} beats ${humanGuess}`
+            roundTextHolder.setAttribute('style', 'color: red');
+            roundTextHolder.textContent = roundText;
+            computerScore += 1;
+            computerScoreHolder.textContent = computerScore;
+
+        } else if (humanGuess === "paper" && computerGuess === "scissors") {
+            roundText = `Computer wins - ${computerGuess} beats ${humanGuess}`
+            roundTextHolder.setAttribute('style', 'color: palered');
+            roundTextHolder.textContent = roundText;
+            computerScore += 1;
+            computerScoreHolder.textContent = computerScore;
+
+        } else if (humanGuess === "scissors" && computerGuess === "rock") {
+            roundText = `Computer wins - ${computerGuess} beats ${humanGuess}`
+            roundTextHolder.setAttribute('style', 'color: red');
+            roundTextHolder.textContent = roundText;
+            computerScore += 1;
+            computerScoreHolder.textContent = computerScore;
+
+        //Human win scenarios
+        } else if (humanGuess === "rock" && computerGuess === "scissors") {
+            roundText = `You win - ${humanGuess} beats ${computerGuess}`
+            roundTextHolder.setAttribute('style', 'color: green');
+            roundTextHolder.textContent = roundText;
+            humanScore += 1;
+            humanScoreHolder.textContent = humanScore;
+
+        } else if (humanGuess === "paper" && computerGuess === "rock") {
+            roundText = `You win - ${humanGuess} beats ${computerGuess}`
+            roundTextHolder.setAttribute('style', 'color: green');
+            roundTextHolder.textContent = roundText;
+            humanScore += 1;
+            humanScoreHolder.textContent = humanScore;
+
+        } else if (humanGuess === "scissors" && computerGuess === "paper") {
+            roundText = `You win - ${humanGuess} beats ${computerGuess}`
+            roundTextHolder.setAttribute('style', 'color: green');
+            roundTextHolder.textContent = roundText;
+            humanScore += 1;
+            humanScoreHolder.textContent = humanScore;
+        }
+    }
+
+
  choiceButtons.forEach((button) => {
      button.addEventListener('click', () => {
-         console.log(button.id);
-         return button.id;
+        humanGuess = button.id;
+        computerPlay();
+        console.log(humanGuess);
+        console.log(computerGuess);
+        roundPlay(humanGuess, computerGuess);
      })
  })
+
+ /*
+         humanScore += 1;
+        humanScoreHolder.textContent = humanScore;
+        computerScore += 1;
+        computerScoreHolder.textContent = computerScore;
+        */
