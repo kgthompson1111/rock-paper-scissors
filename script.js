@@ -1,8 +1,8 @@
  // declare two variables - the computer's guess, and the human's guess
+ /*
  let computerGuess, humanGuess;
  let computerScore = 0;
  let humanScore = 0;
- let winner = false;
 
  function computerPlay() {
      let randomizedGuess = Math.floor(Math.random() * 3) + 1;
@@ -77,9 +77,22 @@
      console.log("The computer scored 5 points - you are the ultimate loser!");
  }
 
-const buttons = document.querySelector('button');
-buttons.forEach((button =>
-button.addEventListener('mouseover', () => {
-    button.classList.add(button-hover);
-})
-)
+ */
+
+let playerScore = 0;
+let playerScoreHolder = document.querySelector('#playerScoreHolder');
+playerScoreHolder.textContent = playerScore;
+
+let computerScore = 0
+let computerScoreHolder = document.querySelector('#computerScoreHolder');
+computerScoreHolder.textContent = computerScore;
+
+let winner = false;
+
+ const choiceButtons = document.querySelectorAll('.choiceButton');
+ choiceButtons.forEach((button) => {
+     button.addEventListener('click', () => {
+         console.log(button.id);
+         return button.id;
+     })
+ })

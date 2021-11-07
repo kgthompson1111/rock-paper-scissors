@@ -41,6 +41,7 @@ h5 {
 .scoreText {
     flex: 1;
     font-size: 25px;
+    margin-right: .5em;
 }
 
 .content-box {
