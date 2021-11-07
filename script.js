@@ -75,7 +75,7 @@ function computerPlay() {
 
         } else if (humanGuess === "paper" && computerGuess === "scissors") {
             roundText = `Computer wins - ${computerGuess} beats ${humanGuess}`
-            roundTextHolder.setAttribute('style', 'color: palered');
+            roundTextHolder.setAttribute('style', 'color: red');
             roundTextHolder.textContent = roundText;
             computerScore += 1;
             computerScoreHolder.textContent = computerScore;
