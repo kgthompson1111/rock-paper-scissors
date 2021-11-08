@@ -19,12 +19,15 @@
 
  //initialize the human score and set to 0, append to human score holder div
 let humanScoreHolder = document.querySelector('#humanScoreHolder');
-let humanScore = 0;
+let humanScore;
+humanScore = 0;
 humanScoreHolder.textContent = humanScore;
 
 //initialize the computer score and set to 0, append to computer score holder div
 let computerScoreHolder = document.querySelector('#computerScoreHolder');
-let computerScore = 0
+let computerScore;
+computerScoreHolder.textContent = computerScore;
+computerScore = 0;
 computerScoreHolder.textContent = computerScore;
 
 //initialize the round text holder for round feedback
@@ -59,7 +62,7 @@ function computerPlay() {
     }
 
 // play a round - takes humanGuess and computerGuess as an arguement and compares value
-    function roundPlay(humanGuess, computerGuess) {
+    function takeScore(humanGuess, computerGuess) {
         if (humanGuess === computerGuess) {
         // Tie scenario
             roundTextHolder.setAttribute('style', 'color: blue');
@@ -111,20 +114,33 @@ function computerPlay() {
         }
     }
 
-
- choiceButtons.forEach((button) => {
-     button.addEventListener('click', () => {
-        humanGuess = button.id;
-        computerPlay();
-        console.log(humanGuess);
-        console.log(computerGuess);
-        roundPlay(humanGuess, computerGuess);
-     })
- })
-
- /*
-         humanScore += 1;
-        humanScoreHolder.textContent = humanScore;
-        computerScore += 1;
-        computerScoreHolder.textContent = computerScore;
-        */
+        // Call game function - make buttons active and call a round when player selects a choice
+        choiceButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+            humanGuess = button.id;
+            computerPlay();
+            takeScore(humanGuess, computerGuess);
+        // After a round - check to see if there's a winner
+            if(humanScore === 5) {
+                alert("YOU WIN");
+                roundText = "With 5 points, you are the ultimate winner! Play again?"
+                roundTextHolder.setAttribute('style', 'color:green');
+                roundTextHolder.textContent = roundText;
+                winner = true;
+            } else if (computerScore === 5) {
+                alert("YOU LOSE!");
+                roundText = "LOSER! The computer scored 5 points before you. Play again?"
+                roundTextHolder.setAttribute('style', 'color:red');
+                roundTextHolder.textContent = roundText;
+                winner = true;
+            }
+            if (winner === true) {
+                humanScore = 0;
+                humanScoreHolder.textContent = humanScore;
+                computerScore = 0;
+                computerScoreHolder.textContent = computerScore;
+                winner = false;
+            }
+            })
+        })
+    
